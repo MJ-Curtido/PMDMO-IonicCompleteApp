@@ -5,5 +5,17 @@
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <form [formGroup]="miFormulario" novalidate>
+      <ion-item>
+        <ion-label position="floating">Nombre: </ion-label>
+        <ion-input formControlName="controlNombre" type="text" name="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Valoración: </ion-label>
+        <ion-input formControlName="controlValoracion" type="number" name="valoracion"></ion-input>
+      </ion-item>
+      <ion-button (click)="comprobarValidacion()">Añadir curso</ion-button>
+    </form>
+  </ion-card>
 </ion-content>
