@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./pagina-inicial/pagina-inicial.module').then( m => m.PaginaInicialPageModule)
   },
   {
-    path: 'pagina-detalle',
+    path: 'pagina-detalle/:id',
     loadChildren: () => import('./pagina-detalle/pagina-detalle.module').then( m => m.PaginaDetallePageModule)
   },
 ];

@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>PaginaInicial</ion-title>
+    <ion-title>Paginal inicial</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,13 +9,35 @@
     <form [formGroup]="miFormulario" novalidate>
       <ion-item>
         <ion-label position="floating">Nombre: </ion-label>
-        <ion-input formControlName="controlNombre" type="text" name="nombre"></ion-input>
+        <ion-input
+          formControlName="controlNombre"
+          type="text"
+          name="nombre"
+        ></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Valoración: </ion-label>
-        <ion-input formControlName="controlValoracion" type="number" name="valoracion"></ion-input>
+        <ion-input
+          formControlName="controlValoracion"
+          type="number"
+          name="valoracion"
+        ></ion-input>
       </ion-item>
-      <ion-button (click)="comprobarValidacion()">Añadir curso</ion-button>
+      <ion-fab-button (click)="comprobarValidacion()" size="small">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
     </form>
   </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let curso of listaCursos">
+      <ion-label>
+        <h1>{{curso.getNombre()}}</h1>
+        <br />{{curso.getValoracion()}}
+        <ion-fab-button (click)="clickDetalleCurso(curso)" size="small">
+          <ion-icon name="play-skip-forward-circle-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

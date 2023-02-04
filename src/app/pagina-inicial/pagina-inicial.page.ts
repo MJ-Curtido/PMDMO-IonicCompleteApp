@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Curso } from '../modelo/curso';
+import { ServicioService } from '../modelo/servicio.service';
 
 @Component({
   selector: 'app-pagina-inicial',
@@ -8,11 +11,12 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./pagina-inicial.page.scss'],
 })
 export class PaginaInicialPage implements OnInit {
-  miFormulario!: FormGroup;
-  controlNombre!: FormControl;
-  controlValoracion!: FormControl;
+  protected miFormulario!: FormGroup;
+  protected controlNombre!: FormControl;
+  protected controlValoracion!: FormControl;
+  protected listaCursos!: Curso[];
 
-  constructor(private controlAlerta: AlertController) { }
+  constructor(private controlAlerta: AlertController, protected serv: ServicioService, private router: Router) { }
 
   ngOnInit() {
     this.controlNombre = new FormControl('', [
@@ -30,6 +34,8 @@ export class PaginaInicialPage implements OnInit {
       controlNombre: this.controlNombre,
       controlValoracion: this.controlValoracion,
     });
+
+    this.serv.getListaCursos$().subscribe(cursos => this.listaCursos = cursos);
   }
 
   async comprobarValidacion() {
@@ -48,5 +54,13 @@ export class PaginaInicialPage implements OnInit {
   
       await alerta.present();
     }
+    else {
+      this.serv.anyadirCurso(new Curso(this.controlNombre.value, this.controlValoracion.value));
+      this.miFormulario.reset();
+    }
+  }
+
+  clickDetalleCurso(curso: Curso) {
+    this.router.navigate(['pagina-detalle', curso.getId()]);
   }
 }

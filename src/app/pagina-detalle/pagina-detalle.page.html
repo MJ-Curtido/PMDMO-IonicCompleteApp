@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>PaginaDetalle</ion-title>
+    <ion-title>{{curso.getNombre()}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-label
+    >El curso {{curso.getNombre()}} tiene una valoración de
+    {{curso.getValoracion()}}</ion-label
+  >
 
+  <ion-fab-button size="small" (click)="clickEliminarCurso()">
+    <ion-icon name="trash-outline"></ion-icon>
+  </ion-fab-button>
 </ion-content>
