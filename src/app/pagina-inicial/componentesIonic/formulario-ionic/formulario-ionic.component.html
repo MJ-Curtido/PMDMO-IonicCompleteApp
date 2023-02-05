@@ -15,6 +15,17 @@
         type="number"
         name="valoracion"
       ></ion-input>
+      <ion-item>
+        <ion-thumbnail>
+          <img [src]="srcImg"/>
+        </ion-thumbnail>
+        <ion-fab-button (click)="echarFoto()" size="small">
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-button (click)="cogerFotoSistema()" size="small">
+          <ion-icon name="image-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-item>
     </ion-item>
     <ion-fab-button (click)="comprobarValidacion()" size="small">
       <ion-icon name="add-circle-outline"></ion-icon>

@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   Camera,
   CameraResultType,
@@ -7,27 +7,27 @@ import {
 } from '@capacitor/camera';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { AlertController } from '@ionic/angular';
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServicioService } from 'src/app/modelo/servicio.service';
 import { Curso } from 'src/app/modelo/curso';
 
 @Component({
   selector: 'app-formulario-ionic',
   templateUrl: './formulario-ionic.component.html',
-  styleUrls: ['./formulario-ionic.component.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule]
+  styleUrls: ['./formulario-ionic.component.scss']
 })
 export class FormularioIonicComponent implements OnInit {
   protected miFormulario!: FormGroup;
   protected controlNombre!: FormControl;
   protected controlValoracion!: FormControl;
+  protected srcImg: String;
 
   constructor(
     protected serv: ServicioService,
     private controlAlerta: AlertController
-  ) {}
+  ) {
+    this.srcImg = './assets/img/sinIcono.png'
+  }
 
   ngOnInit() {
     this.controlNombre = new FormControl('', [
@@ -67,10 +67,22 @@ export class FormularioIonicComponent implements OnInit {
       await alerta.present();
     } else {
       this.serv.anyadirCurso(
-        new Curso(this.controlNombre.value, this.controlValoracion.value)
+        new Curso(this.controlNombre.value, this.controlValoracion.value, this.srcImg)
       );
       this.miFormulario.reset();
+      this.controlValoracion.setValue(0)
+      this.srcImg = './assets/img/sinIcono.png';
     }
+  }
+
+  async cogerFotoSistema() {
+    const foto = await Camera.getPhoto({
+      quality: 100,
+      source: CameraSource.Photos,
+      resultType: CameraResultType.Uri,
+    });
+
+    const savedImageFile = await this.guardarFoto(foto);
   }
 
   async echarFoto() {
@@ -79,6 +91,8 @@ export class FormularioIonicComponent implements OnInit {
       source: CameraSource.Camera,
       resultType: CameraResultType.Uri,
     });
+
+    const savedImageFile = await this.guardarFoto(foto);
   }
 
   private async leerEnBase64(foto: Photo) {
@@ -108,9 +122,21 @@ export class FormularioIonicComponent implements OnInit {
       directory: Directory.Data,
     });
 
+    this.leerFoto(ruta);
+
     return {
       filepath: ruta,
       webviewPath: foto.webPath,
     };
+  }
+
+  async leerFoto(ruta: string){
+    let file = await Filesystem.readFile({
+      directory: Directory.Data,
+      path: ruta
+    })
+
+    let data = `data:image/png;base64,${file.data}`;
+    this.srcImg = data;
   }
 }

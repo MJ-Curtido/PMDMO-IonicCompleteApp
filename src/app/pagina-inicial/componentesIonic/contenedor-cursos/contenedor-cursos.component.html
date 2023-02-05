@@ -1,6 +1,9 @@
 <ion-list>
   <ion-item *ngFor="let curso of listaCursos">
-    <ion-label>
+    <ion-thumbnail>
+      <img src="{{curso.getRutaImg()}}"/>
+    </ion-thumbnail>
+    <ion-label class="txtCurso">
       <h1>{{curso.getNombre()}}</h1>
       <br />{{curso.getValoracion()}}
       <ion-fab-button (click)="clickDetalleCurso(curso)" size="small">

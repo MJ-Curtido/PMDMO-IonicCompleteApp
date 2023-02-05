@@ -1,5 +1,4 @@
-import { CommonModule } from '@angular/common';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Curso } from 'src/app/modelo/curso';
 import { ServicioService } from 'src/app/modelo/servicio.service';
@@ -7,10 +6,7 @@ import { ServicioService } from 'src/app/modelo/servicio.service';
 @Component({
   selector: 'app-contenedor-cursos',
   templateUrl: './contenedor-cursos.component.html',
-  styleUrls: ['./contenedor-cursos.component.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  standalone: true,
-  imports: [CommonModule]
+  styleUrls: ['./contenedor-cursos.component.scss']
 })
 export class ContenedorCursosComponent implements OnInit {
   listaCursos!: Curso[];

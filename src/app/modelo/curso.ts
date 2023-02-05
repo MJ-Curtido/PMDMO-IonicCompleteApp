@@ -4,11 +4,13 @@ export class Curso {
   private id: String;
   private nombre: String;
   private valoracion: Number;
+  private rutaImg: String;
 
-  constructor(nombre: String, valoracion: Number) {
+  constructor(nombre: String, valoracion: Number, rutaImg: String) {
     this.id = uuidv4();
     this.nombre = nombre;
     this.valoracion = valoracion;
+    this.rutaImg = rutaImg;
   }
 
   public getId(): String {
@@ -33,5 +35,13 @@ export class Curso {
 
   public setValoracion(value: Number) {
     this.valoracion = value;
+  }
+
+  public getRutaImg(): String {
+    return this.rutaImg;
+  }
+
+  public setRutaImg(value: String) {
+    this.rutaImg = value;
   }
 }

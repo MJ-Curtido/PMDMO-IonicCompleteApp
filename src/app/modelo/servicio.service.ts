@@ -11,9 +11,9 @@ export class ServicioService {
 
   constructor() {
     this.listaCursos = [
-      new Curso('Programación Multimedia y dispositivos móviles', 10),
-      new Curso('Desarrollo de interfaces', 7),
-      new Curso('Acceso a datos', 0),
+      new Curso('Programación Multimedia y dispositivos móviles', 10, './assets/img/ionic.png'),
+      new Curso('Desarrollo de interfaces', 7, './assets/img/vs.png'),
+      new Curso('Acceso a datos', 0, './assets/img/android.png'),
     ];
 
     this._listaCursos$ = new BehaviorSubject<Curso[]>(this.listaCursos);

@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { IonicModule } from '@ionic/angular';
@@ -15,12 +15,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     IonicModule,
     PaginaInicialPageRoutingModule,
-    ContenedorCursosComponent,
-    FormularioIonicComponent,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  declarations: [PaginaInicialPage],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  declarations: [
+    PaginaInicialPage,
+    FormularioIonicComponent,
+    ContenedorCursosComponent
+  ],
 })
 export class PaginaInicialPageModule {}
