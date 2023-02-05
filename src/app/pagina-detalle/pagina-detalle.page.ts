@@ -33,9 +33,9 @@ export class PaginaDetallePage implements OnInit {
     this.serv.eliminarCurso(this.curso);
 
     const alerta = await this.controlAlerta.create({
-      header: 'Pregunta eliminada',
-      message: 'Pregunta eliminada correctamente.',
-      buttons: ['Okey'],
+      header: 'Curso eliminado',
+      message: 'Curso eliminado correctamente.',
+      buttons: ['Okay'],
     });
 
     await alerta.present();
