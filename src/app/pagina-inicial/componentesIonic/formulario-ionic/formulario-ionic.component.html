@@ -1,0 +1,23 @@
+<ion-card>
+  <form [formGroup]="miFormulario" novalidate>
+    <ion-item>
+      <ion-label position="floating">Nombre: </ion-label>
+      <ion-input
+        formControlName="controlNombre"
+        type="text"
+        name="nombre"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Valoración: </ion-label>
+      <ion-input
+        formControlName="controlValoracion"
+        type="number"
+        name="valoracion"
+      ></ion-input>
+    </ion-item>
+    <ion-fab-button (click)="comprobarValidacion()" size="small">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </form>
+</ion-card>

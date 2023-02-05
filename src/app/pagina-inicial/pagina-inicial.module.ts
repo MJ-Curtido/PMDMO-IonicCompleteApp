@@ -1,21 +1,26 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { PaginaInicialPageRoutingModule } from './pagina-inicial-routing.module';
 
 import { PaginaInicialPage } from './pagina-inicial.page';
+import { ContenedorCursosComponent } from './componentesIonic/contenedor-cursos/contenedor-cursos.component';
+import { FormularioIonicComponent } from './componentesIonic/formulario-ionic/formulario-ionic.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     IonicModule,
-    PaginaInicialPageRoutingModule
+    PaginaInicialPageRoutingModule,
+    ContenedorCursosComponent,
+    FormularioIonicComponent,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  declarations: [PaginaInicialPage]
+  declarations: [PaginaInicialPage],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class PaginaInicialPageModule {}

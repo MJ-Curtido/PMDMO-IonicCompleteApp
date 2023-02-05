@@ -5,39 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    <form [formGroup]="miFormulario" novalidate>
-      <ion-item>
-        <ion-label position="floating">Nombre: </ion-label>
-        <ion-input
-          formControlName="controlNombre"
-          type="text"
-          name="nombre"
-        ></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">Valoración: </ion-label>
-        <ion-input
-          formControlName="controlValoracion"
-          type="number"
-          name="valoracion"
-        ></ion-input>
-      </ion-item>
-      <ion-fab-button (click)="comprobarValidacion()" size="small">
-        <ion-icon name="add-circle-outline"></ion-icon>
-      </ion-fab-button>
-    </form>
-  </ion-card>
+  <app-formulario-ionic></app-formulario-ionic>
 
-  <ion-list>
-    <ion-item *ngFor="let curso of listaCursos">
-      <ion-label>
-        <h1>{{curso.getNombre()}}</h1>
-        <br />{{curso.getValoracion()}}
-        <ion-fab-button (click)="clickDetalleCurso(curso)" size="small">
-          <ion-icon name="play-skip-forward-circle-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <app-contenedor-cursos></app-contenedor-cursos>
 </ion-content>
